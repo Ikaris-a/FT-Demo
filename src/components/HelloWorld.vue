@@ -26,6 +26,7 @@ export default {
   },
   created() {
     this.testFun();
+    this.axiosFun();
   },
   methods: {
     async testFun() {
@@ -33,6 +34,19 @@ export default {
       if (addresses) {
         this.addresses = addresses;
       }
+    },
+    axiosFun() {
+      this.$axios({
+        method: 'get',
+        url: 'https://api.looksrare.org/api/v1/accounts', // 接口地址
+        data: {
+          address: '1', // 传接口参数
+        },
+      })
+        .then((response) => {
+          console.log(response, 'success'); // 成功的返回
+        })
+        .catch((error) => console.log(error, 'error')); // 失败的返回
     },
   },
 };
