@@ -1,5 +1,14 @@
 <template>
-  <div class="hello">hello {{ test }}</div>
+  <div class="hello">
+    <ul v-if="addresses">
+      <li v-for="(item, key, index) in addresses" :key="`addresses-${index}`">
+        <span class="key"> {{ key }}: </span>
+        <span>
+          {{ item }}
+        </span>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -12,6 +21,7 @@ export default {
   data() {
     return {
       test: 1,
+      addresses: undefined,
     };
   },
   created() {
@@ -20,7 +30,9 @@ export default {
   methods: {
     async testFun() {
       const addresses = await addressesByNetwork[SupportedChainId.MAINNET];
-      console.log(addresses);
+      if (addresses) {
+        this.addresses = addresses;
+      }
     },
   },
 };
@@ -28,18 +40,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
 li {
-  display: inline-block;
-  margin: 0 10px;
+  line-height: 20px;
+  list-style: none;
+  font-size: 12px;
+  width: 60%;
+  text-align: left;
 }
-a {
-  color: #42b983;
+.key {
+  display: inline-block;
+  width: 30%;
+  margin-right: 10px;
 }
 </style>
