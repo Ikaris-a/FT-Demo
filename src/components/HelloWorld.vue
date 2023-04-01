@@ -27,6 +27,7 @@ export default {
   created() {
     this.testFun();
     this.axiosFun();
+    this.axiosPostFun();
   },
   methods: {
     async testFun() {
@@ -41,6 +42,38 @@ export default {
         url: 'https://api.looksrare.org/api/v1/accounts', // 接口地址
         data: {
           address: '1', // 传接口参数
+        },
+      })
+        .then((response) => {
+          console.log(response, 'success'); // 成功的返回
+        })
+        .catch((error) => console.log(error, 'error')); // 失败的返回
+    },
+    axiosPostFun() {
+      const add = '0x58c3c2547084CC1C94130D6fd750A3877c7Ca5D2';
+      const data = {
+        signature: '0xECDSA Genesis Puzzle',
+        collection: add,
+        tokenId: '', // ?
+        signer: add,
+        strategy: add,
+        isOrderAsk: true,
+        currency: add,
+        nonce: '56',
+        amount: '1',
+        price: '40000',
+        startTime: '1645553279',
+        endTime: '1645554279',
+        minPercentageToAsk: '', // ?
+        params: '8500',
+      };
+      this.$axios({
+        method: 'post',
+        url: 'https://api.looksrare.org/api/v1/orders', // 接口地址
+        data,
+        headers: {
+          'X-Looks-Api-Key':
+            'b585acd2c2447ccfcc80c4c18cba4a4f2daa0791cc181ff5ae8e5ec7c1ccc594',
         },
       })
         .then((response) => {
