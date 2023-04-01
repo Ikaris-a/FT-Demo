@@ -40,8 +40,8 @@ export default {
       this.$axios({
         method: 'get',
         url: 'https://api.looksrare.org/api/v1/accounts', // 接口地址
-        data: {
-          address: '1', // 传接口参数
+        params: {
+          address: '0x58c3c2547084CC1C94130D6fd750A3877c7Ca5D2', // 传接口参数
         },
       })
         .then((response) => {
@@ -52,7 +52,7 @@ export default {
     axiosPostFun() {
       const add = '0x58c3c2547084CC1C94130D6fd750A3877c7Ca5D2';
       const data = {
-        signature: '0xECDSA Genesis Puzzle',
+        signature: '0x465E2C346Ef0230f8a904f7593a0395f063B579f',
         collection: add,
         tokenId: '', // ?
         signer: add,
