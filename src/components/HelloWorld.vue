@@ -34,8 +34,6 @@ export default {
   },
   created() {
     this.testFun();
-    this.axiosFun();
-    this.axiosPostFun();
   },
   methods: {
     async testFun() {
